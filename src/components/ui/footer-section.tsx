@@ -63,6 +63,9 @@ export function Footer() {
                 <AnimatedContainer className="space-y-4">
                     <Frame className="size-8" />
                     <p className="text-white/60 mt-8 text-sm md:mt-0">
+                        Estratégia, conteúdo e gestão de redes sociais para marcas.
+                    </p>
+                    <p className="text-white/40 text-xs">
                         © {new Date().getFullYear()} Linka Comunicações. Todos os direitos reservados.
                     </p>
                 </AnimatedContainer>

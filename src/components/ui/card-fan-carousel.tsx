@@ -5,10 +5,13 @@ export interface CardItem {
   imgUrl: string;
   alt?: string;
   linkUrl?: string;
+  client?: string;
+  category?: string;
 }
 
 interface SocialCardsProps {
   cards: CardItem[];
+  onCardClick?: (card: CardItem) => void;
 }
 
 const MAX_VISIBLE = 7;
@@ -62,7 +65,7 @@ function getSlotConfig(totalCards: number, slot: number) {
 const ARROW_CLASSES =
   "relative flex items-center justify-center rounded-full border-[1.5px] border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 backdrop-blur-[16px] text-black/40 dark:text-white/55 cursor-pointer shrink-0 z-30 outline-none shadow-[0_4px_20px_rgba(0,0,0,0.1)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.4)] hover:border-black/25 dark:hover:border-white/25 hover:text-black/70 dark:hover:text-white/80 active:opacity-70 transition-colors duration-300 before:content-[''] before:absolute before:inset-[3px] before:rounded-full before:border before:border-black/[0.04] dark:before:border-white/[0.04] before:pointer-events-none";
 
-export default function SocialCards({ cards }: SocialCardsProps) {
+export default function SocialCards({ cards, onCardClick }: SocialCardsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const isAnimating = useRef(false);
   const hasEntered = useRef(false);
@@ -260,6 +263,13 @@ export default function SocialCards({ cards }: SocialCardsProps) {
               </div>
             );
             const fanClasses = "fan-card absolute w-32 h-52 sm:w-40 sm:h-64 md:w-48 md:h-80 rounded-2xl shadow-xl";
+            if (onCardClick) {
+              return (
+                <button key={index} type="button" onClick={() => onCardClick(card)} className={`${fanClasses} block cursor-pointer text-left`} aria-label={card.alt || `Ver conteúdo ${index + 1}`}>
+                  {image}
+                </button>
+              );
+            }
             return card.linkUrl ? (
               <a key={index} href={card.linkUrl} target={card.linkUrl.startsWith("http") ? "_blank" : "_self"} rel="noopener noreferrer" className={`${fanClasses} block cursor-pointer`}>{image}</a>
             ) : (
