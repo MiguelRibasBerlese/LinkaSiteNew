@@ -45,8 +45,10 @@ export default function RobotScrollSection({ scrollLength = 400 }: RobotScrollSe
   const logoRef = useRef<HTMLDivElement>(null)
   const rafRef = useRef<number | null>(null)
   const frameIndexRef = useRef(0)
+  const progressRef = useRef(0)
 
   const LOGO_REVEAL_START = 0.85
+  const MAX_BLUR_PX = 10
 
   const [shouldLoad, setShouldLoad] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
@@ -115,6 +117,7 @@ export default function RobotScrollSection({ scrollLength = 400 }: RobotScrollSe
       ctx.imageSmoothingQuality = 'high'
       const frame = frames[frameIndexRef.current]
       if (frame) drawContain(ctx, frame, rect.width, rect.height)
+      canvas.style.filter = `blur(${progressRef.current * MAX_BLUR_PX}px)`
     }
 
     let resizeTimer: ReturnType<typeof setTimeout>
@@ -130,6 +133,7 @@ export default function RobotScrollSection({ scrollLength = 400 }: RobotScrollSe
       const rect = sticky.getBoundingClientRect()
       const frame = frames[frameIndexRef.current]
       if (frame) drawContain(ctx, frame, rect.width, rect.height)
+      canvas.style.filter = `blur(${progressRef.current * MAX_BLUR_PX}px)`
       rafRef.current = null
     }
 
@@ -140,6 +144,7 @@ export default function RobotScrollSection({ scrollLength = 400 }: RobotScrollSe
       scrub: true,
       pin: stickyRef.current,
       onUpdate: (self) => {
+        progressRef.current = self.progress
         const index = Math.round(self.progress * (frames.length - 1))
         if (index !== frameIndexRef.current) {
           frameIndexRef.current = index
@@ -167,7 +172,7 @@ export default function RobotScrollSection({ scrollLength = 400 }: RobotScrollSe
 
   if (reducedMotion) {
     return (
-      <section className="relative h-screen w-full overflow-hidden bg-brand-black">
+      <section id="hero-scroll" className="relative h-screen w-full overflow-hidden bg-brand-black">
         <img
           src={`${basePath}/frame_${String(frameCount).padStart(3, '0')}.webp`}
           alt="Linka — inteligência que desperta"
@@ -181,7 +186,12 @@ export default function RobotScrollSection({ scrollLength = 400 }: RobotScrollSe
   }
 
   return (
-    <div ref={wrapperRef} style={{ height: `${scrollLength}vh` }} className="relative w-full">
+    <div
+      id="hero-scroll"
+      ref={wrapperRef}
+      style={{ height: `${scrollLength}vh` }}
+      className="relative w-full"
+    >
       <div ref={stickyRef} className="relative h-screen w-full overflow-hidden bg-brand-black">
         <canvas ref={canvasRef} className="h-full w-full" />
         <div
