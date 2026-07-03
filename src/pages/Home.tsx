@@ -1,6 +1,5 @@
 import Navbar from '../components/layout/Navbar'
 import { Footer } from '../components/ui/footer-section'
-import RobotScrollSection from '../components/robot-scroll/RobotScrollSection'
 import HeroIntroSection from '../components/sections/HeroIntroSection'
 import SocialCardsSection from '../components/sections/SocialCardsSection'
 import SocialLinksSection from '../components/sections/SocialLinksSection'
@@ -13,7 +12,6 @@ export default function Home() {
     <>
       <Navbar />
       <main>
-        <RobotScrollSection />
         <HeroIntroSection />
         <SocialCardsSection />
         <PortfolioVideosSection />
