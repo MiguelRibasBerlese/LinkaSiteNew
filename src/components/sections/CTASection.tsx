@@ -21,7 +21,9 @@ export default function CTASection() {
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <a
-            href="#"
+            href="https://instagram.com/linka_comunicacoes"
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-brand-primary shadow-lg transition-transform hover:scale-105"
           >
             <CalendarCheck className="size-4" />

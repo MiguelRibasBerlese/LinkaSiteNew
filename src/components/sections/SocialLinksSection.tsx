@@ -40,7 +40,7 @@ export default function SocialLinksSection() {
                 <Icon className="size-5 text-white" />
               </span>
               <p className="font-semibold text-white">{p.name}</p>
-              <p className="mt-1 text-sm text-white/40">{p.handle}</p>
+              <p className="mt-1 text-sm text-white/55">{p.handle}</p>
               {p.soon && (
                 <span className="mt-3 inline-block rounded-full bg-white/10 px-3 py-1 text-[10px] font-medium text-white/50">
                   EM BREVE

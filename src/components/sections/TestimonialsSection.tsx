@@ -23,7 +23,7 @@ export default function TestimonialsSection() {
   const shouldReduceMotion = useReducedMotion()
 
   return (
-    <section className="w-full bg-brand-black px-6 py-16">
+    <section id="depoimentos" className="w-full bg-brand-black px-6 py-16">
       <motion.div
         initial={shouldReduceMotion ? undefined : { opacity: 0, filter: 'blur(4px)', translateY: -8 }}
         whileInView={shouldReduceMotion ? undefined : { opacity: 1, filter: 'blur(0px)', translateY: 0 }}
@@ -57,7 +57,7 @@ export default function TestimonialsSection() {
               </span>
               <div>
                 <p className="text-sm font-semibold text-white">{t.name}</p>
-                <p className="text-xs text-white/40">{t.role}</p>
+                <p className="text-xs text-white/55">{t.role}</p>
               </div>
             </div>
           </div>
