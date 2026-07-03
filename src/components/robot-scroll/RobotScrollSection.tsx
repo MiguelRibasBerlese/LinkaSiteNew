@@ -11,7 +11,7 @@ const DESKTOP_FRAME_COUNT = 109
 const MOBILE_FRAME_COUNT = 72
 const MOBILE_BREAKPOINT = 768
 
-function drawCover(
+function drawContain(
   ctx: CanvasRenderingContext2D,
   img: HTMLImageElement,
   canvasWidth: number,
@@ -24,11 +24,11 @@ function drawCover(
   let drawHeight: number
 
   if (imgRatio > canvasRatio) {
-    drawHeight = canvasHeight
-    drawWidth = drawHeight * imgRatio
-  } else {
     drawWidth = canvasWidth
     drawHeight = drawWidth / imgRatio
+  } else {
+    drawHeight = canvasHeight
+    drawWidth = drawHeight * imgRatio
   }
 
   const offsetX = (canvasWidth - drawWidth) / 2
@@ -114,7 +114,7 @@ export default function RobotScrollSection({ scrollLength = 400 }: RobotScrollSe
       ctx.imageSmoothingEnabled = true
       ctx.imageSmoothingQuality = 'high'
       const frame = frames[frameIndexRef.current]
-      if (frame) drawCover(ctx, frame, rect.width, rect.height)
+      if (frame) drawContain(ctx, frame, rect.width, rect.height)
     }
 
     let resizeTimer: ReturnType<typeof setTimeout>
@@ -129,7 +129,7 @@ export default function RobotScrollSection({ scrollLength = 400 }: RobotScrollSe
     const renderFrame = () => {
       const rect = sticky.getBoundingClientRect()
       const frame = frames[frameIndexRef.current]
-      if (frame) drawCover(ctx, frame, rect.width, rect.height)
+      if (frame) drawContain(ctx, frame, rect.width, rect.height)
       rafRef.current = null
     }
 
@@ -171,7 +171,7 @@ export default function RobotScrollSection({ scrollLength = 400 }: RobotScrollSe
         <img
           src={`${basePath}/frame_${String(frameCount).padStart(3, '0')}.webp`}
           alt="Linka — inteligência que desperta"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-contain"
         />
         <div className="absolute inset-0 flex items-center justify-center">
           <img src={logo} alt="Linka Comunicações" className="w-48 md:w-64" />
