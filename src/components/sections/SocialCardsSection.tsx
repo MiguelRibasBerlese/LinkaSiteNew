@@ -1,3 +1,4 @@
+import { motion, useReducedMotion } from 'motion/react'
 import SocialCards, { type CardItem } from '../ui/card-fan-carousel'
 
 const CARDS: CardItem[] = [
@@ -11,12 +12,27 @@ const CARDS: CardItem[] = [
 ]
 
 export default function SocialCardsSection() {
+  const shouldReduceMotion = useReducedMotion()
+
   return (
-    <section className="w-full bg-brand-black py-16">
-      <h2 className="mb-8 text-center text-2xl font-semibold text-white md:text-3xl">
+    <section className="w-full overflow-hidden bg-brand-black py-16">
+      <motion.h2
+        initial={shouldReduceMotion ? undefined : { opacity: 0, filter: 'blur(4px)', translateY: -8 }}
+        whileInView={shouldReduceMotion ? undefined : { opacity: 1, filter: 'blur(0px)', translateY: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="mb-8 text-center text-2xl font-semibold text-white md:text-3xl"
+      >
         Nosso trabalho
-      </h2>
-      <SocialCards cards={CARDS} />
+      </motion.h2>
+      <motion.div
+        initial={shouldReduceMotion ? undefined : { opacity: 0, translateY: 24 }}
+        whileInView={shouldReduceMotion ? undefined : { opacity: 1, translateY: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8, delay: 0.1 }}
+      >
+        <SocialCards cards={CARDS} />
+      </motion.div>
     </section>
   )
 }
