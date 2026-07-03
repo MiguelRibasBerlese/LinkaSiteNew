@@ -111,6 +111,8 @@ export default function RobotScrollSection({ scrollLength = 400 }: RobotScrollSe
       canvas.width = rect.width * dpr
       canvas.height = rect.height * dpr
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+      ctx.imageSmoothingEnabled = true
+      ctx.imageSmoothingQuality = 'high'
       const frame = frames[frameIndexRef.current]
       if (frame) drawCover(ctx, frame, rect.width, rect.height)
     }
