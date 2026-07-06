@@ -32,7 +32,10 @@ export default function FioLine() {
       return
     }
     const scrollRange = document.documentElement.scrollHeight - window.innerHeight
-    const frac = scrollRange > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollRange)) : 0
+    const scrollFrac = scrollRange > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollRange)) : 0
+    // small baseline reveal so a hint of the line shows before any scrolling happens
+    const MIN_FRAC = 0.04
+    const frac = MIN_FRAC + scrollFrac * (1 - MIN_FRAC)
     path.style.strokeDashoffset = String(total * (1 - frac))
   }
 
