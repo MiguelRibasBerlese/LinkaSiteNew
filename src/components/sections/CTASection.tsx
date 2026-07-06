@@ -1,45 +1,41 @@
-import { motion, useReducedMotion } from 'motion/react'
-import { CalendarCheck, Camera } from 'lucide-react'
+import { useState } from 'react'
+
+const CTA_HREF = 'https://instagram.com/linka_comunicacoes'
 
 export default function CTASection() {
-  const shouldReduceMotion = useReducedMotion()
+  const [magnet, setMagnet] = useState({ x: 0, y: 0 })
+  const reducedMotion =
+    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
   return (
-    <section id="contato" className="w-full bg-brand-black px-6 py-16">
-      <motion.div
-        initial={shouldReduceMotion ? undefined : { opacity: 0, filter: 'blur(6px)', translateY: 16 }}
-        whileInView={shouldReduceMotion ? undefined : { opacity: 1, filter: 'blur(0px)', translateY: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.8 }}
-        className="relative mx-auto max-w-4xl overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-brand-primary via-purple-600 to-fuchsia-600 px-8 py-16 text-center"
+    <section id="contato" className="relative z-[2] mx-auto max-w-6xl px-6 pb-44 md:px-12">
+      <h2 className="m-0 mb-6 max-w-2xl font-display text-[clamp(34px,6vw,72px)] font-bold leading-tight tracking-tight text-white">
+        Bora colocar a sua marca no lugar certo?
+      </h2>
+      <p className="m-0 mb-12 max-w-md text-lg text-white/60">
+        Conta pra gente o seu momento. A gente responde com um plano.
+      </p>
+      <a
+        href={CTA_HREF}
+        target="_blank"
+        rel="noopener noreferrer"
+        onMouseMove={(e) => {
+          if (reducedMotion) return
+          const rect = e.currentTarget.getBoundingClientRect()
+          const px = (e.clientX - rect.left) / rect.width - 0.5
+          const py = (e.clientY - rect.top) / rect.height - 0.5
+          setMagnet({ x: px * 24, y: py * 18 })
+        }}
+        onMouseLeave={() => setMagnet({ x: 0, y: 0 })}
+        className="inline-flex items-center gap-3.5 rounded-2xl bg-brand-primary px-11 py-6 font-display text-xl font-semibold text-white"
+        style={{
+          transform: `translate(${magnet.x}px, ${magnet.y}px)`,
+          transition: 'transform 150ms ease-out',
+        }}
       >
-        <span className="mb-6 inline-block rounded-full bg-white/15 px-4 py-1.5 text-xs font-semibold text-white">
-          🗓 CONVERSA GRATUITA DE 30 MIN
-        </span>
-        <h2 className="text-3xl font-extrabold text-white md:text-5xl">Pronto para crescer de verdade?</h2>
-        <p className="mx-auto mt-4 max-w-xl text-white/85">Reserve agora sua conversa estratégica gratuita.</p>
-
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-          <a
-            href="https://instagram.com/linka_comunicacoes"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-brand-primary shadow-lg transition-transform hover:scale-105"
-          >
-            <CalendarCheck className="size-4" />
-            Agendar minha conversa
-          </a>
-          <a
-            href="https://instagram.com/linka_comunicacoes"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 rounded-full border border-white/40 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
-          >
-            <Camera className="size-4" />
-            Ver nosso Instagram
-          </a>
-        </div>
-      </motion.div>
+        Começar um projeto
+        <span className="text-xl">→</span>
+      </a>
     </section>
   )
 }
