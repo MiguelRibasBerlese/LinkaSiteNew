@@ -4,6 +4,8 @@ import { useRef } from 'react'
 interface ZoomImage {
   src: string
   alt?: string
+  /** Tailwind aspect-ratio class, defaults to the Instagram-post 4:5 ratio */
+  aspectClass?: string
 }
 
 interface ZoomParallaxProps {
@@ -29,17 +31,17 @@ export function ZoomParallax({ images }: ZoomParallaxProps) {
   return (
     <div ref={container} className="relative h-[300vh]">
       <div className="sticky top-0 h-screen overflow-hidden">
-        {images.map(({ src, alt }, index) => {
+        {images.map(({ src, alt, aspectClass }, index) => {
           const scale = scales[index % scales.length]
 
           return (
             <motion.div
               key={src}
               style={{ scale }}
-              className={`absolute top-0 flex h-full w-full items-center justify-center ${index === 1 ? '[&>div]:!-top-[30vh] [&>div]:!left-[5vw] [&>div]:!h-[30vh]' : ''} ${index === 2 ? '[&>div]:!-top-[10vh] [&>div]:!-left-[25vw] [&>div]:!h-[45vh]' : ''} ${index === 3 ? '[&>div]:!left-[27.5vw] [&>div]:!h-[25vh]' : ''} ${index === 4 ? '[&>div]:!top-[27.5vh] [&>div]:!left-[5vw] [&>div]:!h-[25vh]' : ''} ${index === 5 ? '[&>div]:!top-[27.5vh] [&>div]:!-left-[22.5vw] [&>div]:!h-[25vh]' : ''} ${index === 6 ? '[&>div]:!top-[22.5vh] [&>div]:!left-[25vw] [&>div]:!h-[15vh]' : ''}`}
+              className={`absolute top-0 flex h-full w-full items-center justify-center ${index === 1 ? '[&>div]:!-top-[24vh] [&>div]:!left-[16vh] [&>div]:!h-[18vh]' : ''} ${index === 2 ? '[&>div]:!-top-[2vh] [&>div]:!left-[32vh] [&>div]:!h-[20vh]' : ''} ${index === 3 ? '[&>div]:!top-[22vh] [&>div]:!left-[16vh] [&>div]:!h-[16vh]' : ''} ${index === 4 ? '[&>div]:!top-[22vh] [&>div]:!-left-[16vh] [&>div]:!h-[16vh]' : ''} ${index === 5 ? '[&>div]:!-top-[2vh] [&>div]:!-left-[32vh] [&>div]:!h-[20vh]' : ''} ${index === 6 ? '[&>div]:!-top-[24vh] [&>div]:!-left-[16vh] [&>div]:!h-[18vh]' : ''}`}
             >
-              {/* aspect-[4/5] matches the source images' native Instagram-post ratio, so width follows height instead of being cropped to an independent vw box */}
-              <div className="relative aspect-[4/5] h-[25vh] overflow-hidden rounded-2xl border border-brand-border">
+              {/* aspectClass matches each image's native ratio (4:5 for the Instagram posts, 16:9 for the center logo), so width follows height instead of being cropped to an independent vw box */}
+              <div className={`relative ${aspectClass || 'aspect-[4/5]'} h-[25vh] overflow-hidden rounded-2xl border border-brand-border`}>
                 <img
                   src={src}
                   alt={alt || `Trabalho ${index + 1}`}

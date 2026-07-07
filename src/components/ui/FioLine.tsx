@@ -1,5 +1,8 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 
+// how much earlier the line stops before reaching the marquee row
+const FIO_STOP_OFFSET = 55
+
 function buildFioPath(h: number) {
   const segments = Math.max(6, Math.round(h / 700))
   let d = `M 60 0`
@@ -31,7 +34,11 @@ export default function FioLine() {
       path.style.strokeDashoffset = '0'
       return
     }
-    const scrollRange = document.documentElement.scrollHeight - window.innerHeight
+    const stopEl = document.getElementById('fio-stop')
+    const stopY = stopEl
+      ? stopEl.getBoundingClientRect().top + window.scrollY - FIO_STOP_OFFSET
+      : document.documentElement.scrollHeight
+    const scrollRange = stopY - window.innerHeight
     const scrollFrac = scrollRange > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollRange)) : 0
     // small baseline reveal so a hint of the line shows before any scrolling happens
     const MIN_FRAC = 0.04
@@ -47,7 +54,10 @@ export default function FioLine() {
 
     const update = () => {
       ticking = false
-      const height = document.documentElement.scrollHeight
+      const stopEl = document.getElementById('fio-stop')
+      const height = stopEl
+        ? stopEl.getBoundingClientRect().top + window.scrollY - FIO_STOP_OFFSET
+        : document.documentElement.scrollHeight
       if (Math.abs(height - docHeightRef.current) > 4) {
         setDocHeight(height)
       }

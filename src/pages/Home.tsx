@@ -5,6 +5,7 @@ import HeroSection from '../components/sections/HeroSection'
 import ManifestoSection from '../components/sections/ManifestoSection'
 import ServicosSection from '../components/sections/ServicosSection'
 import TrabalhoSection from '../components/sections/TrabalhoSection'
+import DepoimentosSection from '../components/sections/DepoimentosSection'
 import ProvaSection from '../components/sections/ProvaSection'
 import CTASection from '../components/sections/CTASection'
 
@@ -18,6 +19,7 @@ export default function Home() {
         <ManifestoSection />
         <ServicosSection />
         <TrabalhoSection />
+        <DepoimentosSection />
         <ProvaSection />
         <CTASection />
       </main>
