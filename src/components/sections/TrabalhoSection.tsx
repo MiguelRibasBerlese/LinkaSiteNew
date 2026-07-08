@@ -17,26 +17,42 @@ const NODES = [
 ]
 
 const CAROUSELS = [
-  { title: 'Imobiliária', subtitle: 'Lançamento Imobiliário', src: 'https://linkacomunicacoes.com/wp-content/uploads/2026/06/Video-1.mp4' },
-  { title: 'Salão de Beleza', subtitle: 'Antes e Depois - Cabelo Feminino', src: 'https://linkacomunicacoes.com/wp-content/uploads/2026/06/Video-2.mp4' },
-  { title: 'Esporte', subtitle: 'Divulgação da SemiFinal', src: 'https://linkacomunicacoes.com/wp-content/uploads/2026/06/Video-3.mp4' },
+  { n: '01', title: 'Imobiliária', subtitle: 'Lançamento Imobiliário', src: 'https://linkacomunicacoes.com/wp-content/uploads/2026/06/Video-1.mp4' },
+  { n: '02', title: 'Salão de Beleza', subtitle: 'Antes e Depois - Cabelo Feminino', src: 'https://linkacomunicacoes.com/wp-content/uploads/2026/06/Video-2.mp4' },
+  { n: '03', title: 'Esporte', subtitle: 'Divulgação da SemiFinal', src: 'https://linkacomunicacoes.com/wp-content/uploads/2026/06/Video-3.mp4' },
 ]
 
 function VideoCard({ carousel }: { carousel: (typeof CAROUSELS)[number] }) {
   return (
-    <div className="group flex w-full max-w-[260px] flex-col items-center rounded-3xl border border-brand-border/80 bg-gradient-to-b from-white/[0.06] to-white/[0.015] p-4 shadow-xl shadow-black/40 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary/50 hover:shadow-brand-primary/10">
-      <div className="relative mx-auto aspect-[9/16] w-full overflow-hidden rounded-xl bg-black ring-1 ring-white/10">
-        <video
-          src={carousel.src}
-          controls
-          playsInline
-          preload="metadata"
-          className="absolute inset-0 size-full object-cover"
-        />
-      </div>
-      <div className="mt-3.5 text-center">
-        <div className="font-display text-lg font-bold text-white">{carousel.title}</div>
-        <div className="font-mono text-xs uppercase tracking-[0.1em] text-brand-primary">{carousel.subtitle}</div>
+    <div className="group relative w-full max-w-[260px]">
+      {/* glow halo behind the card, only visible on hover */}
+      <div className="absolute -inset-1 rounded-[2rem] bg-gradient-to-b from-brand-primary/40 to-brand-accent/0 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-60" />
+
+      <div className="relative flex flex-col items-center overflow-hidden rounded-[1.75rem] border border-brand-border/80 bg-gradient-to-b from-white/[0.07] to-white/[0.015] p-4 shadow-xl shadow-black/40 backdrop-blur-sm transition-all duration-300 group-hover:-translate-y-1.5 group-hover:border-brand-primary/50">
+        <span className="pointer-events-none absolute left-4 top-4 z-10 font-mono text-xs font-semibold tracking-widest text-white/30">
+          {carousel.n}
+        </span>
+
+        <div className="relative mx-auto aspect-[9/16] w-full overflow-hidden rounded-xl bg-black ring-1 ring-white/10">
+          <video
+            src={carousel.src}
+            controls
+            playsInline
+            preload="metadata"
+            className="absolute inset-0 size-full object-cover"
+          />
+          {/* top sheen so the frame reads as glass rather than a flat rectangle */}
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white/10 to-transparent" />
+        </div>
+
+        <div className="mt-4 flex w-full items-center gap-3">
+          <span className="h-px flex-1 bg-gradient-to-r from-transparent via-brand-border to-transparent" />
+        </div>
+
+        <div className="mt-3 text-center">
+          <div className="font-display text-lg font-bold text-white">{carousel.title}</div>
+          <div className="font-mono text-xs uppercase tracking-[0.1em] text-brand-primary">{carousel.subtitle}</div>
+        </div>
       </div>
     </div>
   )
@@ -64,9 +80,9 @@ export default function TrabalhoSection() {
 
       <section className="relative z-[2] mx-auto max-w-6xl px-6 pb-24 pt-24 md:px-12 md:pt-32">
         <div className="mb-10 pl-8">
-          <div className="mb-5 font-mono text-xs uppercase tracking-[0.12em] text-brand-primary">Nossas filmagens</div>
+          <div className="mb-5 font-mono text-xs uppercase tracking-[0.12em] text-brand-primary">Conteúdo em vídeo</div>
           <h3 className="m-0 font-display text-[clamp(24px,4vw,40px)] font-bold tracking-tight text-white">
-            Vídeos em movimento
+            Exemplos de histórias sendo contadas
           </h3>
         </div>
         <div className="flex flex-col items-center gap-10 md:flex-row md:items-start md:justify-center">

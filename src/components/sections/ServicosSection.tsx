@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion'
+
 const SERVICES = [
   {
     title: 'Estratégia de marca e conteúdo',
@@ -30,16 +32,20 @@ export default function ServicosSection() {
       </h2>
       <div className="grid grid-cols-1 gap-5 md:grid-cols-6">
         {SERVICES.map((svc, i) => (
-          <div
+          <motion.div
             key={svc.title}
-            className={`group relative flex min-h-[220px] flex-col justify-between rounded-2xl border border-brand-border bg-brand-panel p-9 transition-all duration-200 hover:border-brand-primary hover:shadow-[0_0_40px_-12px_rgba(133,71,228,0.45)] ${svc.span}`}
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.4, delay: i * 0.06, ease: 'easeOut' }}
+            className={`group relative flex min-h-[220px] flex-col justify-between rounded-2xl border border-brand-primary/40 bg-brand-panel p-9 transition-all duration-200 hover:border-brand-primary hover:shadow-[0_0_40px_-12px_rgba(133,71,228,0.45)] ${svc.span}`}
           >
             <div className="font-mono text-xs text-brand-dim">{String(i + 1).padStart(2, '0')}</div>
             <div>
               <h3 className="m-0 mb-3 font-display text-2xl font-semibold text-white">{svc.title}</h3>
               <p className="m-0 text-[15px] leading-relaxed text-white/60">{svc.desc}</p>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

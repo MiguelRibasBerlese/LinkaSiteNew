@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 const STATS = [
   { value: '+50', label: 'Clientes atendidos' },
   { value: '4.9', label: 'De avaliação em média', star: true },
-  { value: '+30M', label: 'De impressões geradas' },
+  { value: '3M+', label: 'De impressões geradas' },
 ]
 
 export default function ProvaSection() {

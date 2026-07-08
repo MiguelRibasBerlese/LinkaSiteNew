@@ -7,7 +7,7 @@ const LINKS = [
   { label: 'Contato', href: '#contato' },
 ]
 
-const CTA_HREF = 'https://instagram.com/linka_comunicacoes'
+const CTA_HREF = 'https://form.respondi.app/tYwQVYod'
 
 function MenuToggleIcon({ open }: { open: boolean }) {
   return (

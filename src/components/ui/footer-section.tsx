@@ -1,9 +1,9 @@
-const CTA_HREF = 'https://instagram.com/linka_comunicacoes'
+const CTA_HREF = 'https://form.respondi.app/tYwQVYod'
 
 const SOCIAL_LINKS = [
-  { title: 'Instagram', href: 'https://instagram.com/linka_comunicacoes' },
-  { title: 'TikTok', href: 'https://tiktok.com/@linka_comunicacoes' },
-  { title: 'LinkedIn', href: 'https://linkedin.com' },
+  { title: 'Instagram', href: 'https://www.instagram.com/linka_comunicacoes?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' },
+  { title: 'TikTok', href: 'https://www.tiktok.com/@linka_comunicacoes?_r=1&_t=ZS-97VojJ9gxGc' },
+  { title: 'LinkedIn', href: 'https://www.linkedin.com/company/linka-comunicacoes/posts/?feedView=all' },
 ]
 
 const NAV_LINKS = [
@@ -43,7 +43,7 @@ export function Footer() {
           <div className="max-w-xs">
             <div className="font-display text-xl font-bold text-white">LINKA</div>
             <p className="mt-3 text-sm leading-relaxed text-brand-dim">
-              Comunicação e conteúdo estratégico pra marcas que querem gerar conexão de verdade.
+              Estratégia, conteúdo e gestão de redes sociais para marcas.
             </p>
           </div>
 

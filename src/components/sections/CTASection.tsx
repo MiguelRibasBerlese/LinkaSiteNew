@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const CTA_HREF = 'https://instagram.com/linka_comunicacoes'
+const CTA_HREF = 'https://form.respondi.app/tYwQVYod'
 
 export default function CTASection() {
   const [magnet, setMagnet] = useState({ x: 0, y: 0 })
@@ -10,10 +10,10 @@ export default function CTASection() {
   return (
     <section id="contato" className="relative z-[2] mx-auto max-w-6xl px-6 pb-44 md:px-12">
       <h2 className="m-0 mb-6 max-w-2xl font-display text-[clamp(34px,6vw,72px)] font-bold leading-tight tracking-tight text-white">
-        Bora colocar a sua marca no lugar certo?
+        Pronto para crescer de verdade?
       </h2>
       <p className="m-0 mb-12 max-w-md text-lg text-white/60">
-        Conta pra gente o seu momento. A gente responde com um plano.
+        Reserve agora sua conversa gratuita.
       </p>
       <a
         href={CTA_HREF}
@@ -33,7 +33,7 @@ export default function CTASection() {
           transition: 'transform 150ms ease-out',
         }}
       >
-        Começar um projeto
+        Agendar minha conversa
         <span className="text-xl">→</span>
       </a>
     </section>

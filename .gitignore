@@ -23,3 +23,20 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local working materials, not part of the site
+.claude/
+graphify-out/
+Novo Design/
+conteudos/
+copys e sessões/
+
+# Stray shell artifacts
+nul
+"(null),+"
+"(null),-"
+,
+,+
+div]
+{,
+{,-

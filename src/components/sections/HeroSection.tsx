@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 
+const FORM_HREF = 'https://form.respondi.app/tYwQVYod'
+
 export default function HeroSection() {
   const [played, setPlayed] = useState(false)
 
@@ -19,12 +21,12 @@ export default function HeroSection() {
       >
         <span className="size-2.5 shrink-0 rounded-full bg-brand-primary shadow-[0_0_24px_6px_rgba(133,71,228,0.7)]" />
         <span className="font-mono text-xs uppercase tracking-[0.12em] text-brand-primary">
-          Agência de estratégia, conteúdo e redes sociais
+          Marketing & Social Media
         </span>
       </div>
 
       <h1 className="m-0 font-display text-[clamp(48px,10vw,132px)] font-bold leading-[0.98] tracking-tight text-white">
-        {['Estratégia.', 'Conteúdo.', 'Conexão.'].map((line, i) => (
+        {['Sua marca merece', 'estar no', 'próximo nível'].map((line, i) => (
           <div key={line} className="overflow-hidden">
             <span
               className="block transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
@@ -40,24 +42,20 @@ export default function HeroSection() {
         ))}
       </h1>
 
-      <p className="mt-10 max-w-[480px] text-lg leading-relaxed text-white/60">
-        Ajudamos marcas a aparecer, ganhar consistência e virar conversa nas redes sociais.
-      </p>
-
       <div className="mt-11 flex items-center gap-7">
         <a
-          href="#trabalho"
-          className="rounded-2xl bg-brand-primary px-8 py-4 text-base font-semibold text-white transition-colors hover:bg-[#9A63EE]"
-        >
-          Ver nosso trabalho
-        </a>
-        <a
-          href="https://instagram.com/linka_comunicacoes"
+          href={FORM_HREF}
           target="_blank"
           rel="noopener noreferrer"
+          className="rounded-2xl bg-brand-primary px-8 py-4 text-base font-semibold text-white transition-colors hover:bg-[#9A63EE]"
+        >
+          Agendar reunião gratuita
+        </a>
+        <a
+          href="#trabalho"
           className="border-b border-brand-primary pb-0.5 text-base font-medium text-white"
         >
-          Falar com a gente
+          Ver vídeos
         </a>
       </div>
     </section>
