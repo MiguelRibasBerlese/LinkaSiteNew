@@ -42,7 +42,7 @@ export default function HeroSection() {
         ))}
       </h1>
 
-      <div className="mt-11 flex flex-col items-center gap-4 sm:flex-row sm:gap-7">
+      <div className="mt-11 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-7">
         <a
           href={FORM_HREF}
           target="_blank"
