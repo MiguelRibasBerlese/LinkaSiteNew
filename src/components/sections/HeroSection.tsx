@@ -47,7 +47,7 @@ export default function HeroSection() {
           href={FORM_HREF}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full max-w-xs rounded-2xl bg-brand-primary px-8 py-4 text-center text-base font-semibold text-white transition-colors hover:bg-[#9A63EE] sm:w-auto"
+          className="rounded-2xl bg-brand-primary px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#9A63EE] sm:px-8 sm:py-4 sm:text-base"
         >
           Agendar reunião gratuita
         </a>
