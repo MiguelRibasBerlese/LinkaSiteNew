@@ -81,13 +81,16 @@ export function ZoomParallax({ images }: ZoomParallaxProps) {
             >
               {/* aspectClass matches each image's native ratio (4:5 for the Instagram posts, 16:9 for the center logo), so width follows height instead of being cropped to an independent vw box */}
               {/* smaller base height on mobile: dvh-based sizing doesn't shrink with narrow width like vmin offsets do, so without this the cards overlap/touch even at scroll progress 0 */}
-              {href ? (
-                <a href={href} target="_blank" rel="noopener noreferrer" aria-label={alt} className={frameClass}>
-                  {img}
-                </a>
-              ) : (
-                <div className={frameClass}>{img}</div>
-              )}
+              {/* stays a plain <div> here (not <a>) even when href is set — the sibling [&>div] selectors above target this exact direct child to position each scattered image */}
+              <div className={frameClass}>
+                {href ? (
+                  <a href={href} target="_blank" rel="noopener noreferrer" aria-label={alt} className="block h-full w-full">
+                    {img}
+                  </a>
+                ) : (
+                  img
+                )}
+              </div>
             </motion.div>
           )
         })}
