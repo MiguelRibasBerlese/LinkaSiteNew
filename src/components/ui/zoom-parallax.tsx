@@ -1,5 +1,6 @@
 import { useScroll, useTransform, motion } from 'framer-motion'
 import { useRef } from 'react'
+import { useIsMobile } from '../../hooks/useIsMobile'
 
 interface ZoomImage {
   src: string
@@ -13,7 +14,25 @@ interface ZoomParallaxProps {
   images: ZoomImage[]
 }
 
+// ponytail: sticky scroll-scale (up to 9x, 7 simultaneous transforms) is heavy on mobile GPUs and caused scroll delay,
+// so mobile skips the pin/zoom and just gets a static grid of the same images
+function ZoomParallaxMobile({ images }: ZoomParallaxProps) {
+  return (
+    <div className="grid grid-cols-2 gap-3 px-6">
+      {images.map(({ src, alt, aspectClass }, index) => (
+        <div
+          key={src}
+          className={`relative overflow-hidden rounded-2xl border border-brand-border ${aspectClass || 'aspect-[4/5]'} ${index === 0 ? 'col-span-2' : ''}`}
+        >
+          <img src={src} alt={alt || `Trabalho ${index + 1}`} loading="lazy" className="h-full w-full object-cover object-center" />
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export function ZoomParallax({ images }: ZoomParallaxProps) {
+  const isMobile = useIsMobile()
   const container = useRef(null)
   const { scrollYProgress } = useScroll({
     target: container,
@@ -27,6 +46,8 @@ export function ZoomParallax({ images }: ZoomParallaxProps) {
   const scale9 = useTransform(scrollYProgress, [0, 1], [1, 9])
 
   const scales = [scale4, scale5, scale6, scale5, scale6, scale8, scale9]
+
+  if (isMobile) return <ZoomParallaxMobile images={images} />
 
   return (
     <div ref={container} className="relative h-[300dvh]">

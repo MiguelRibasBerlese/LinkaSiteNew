@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useIsMobile } from '../../hooks/useIsMobile'
 
 // how much earlier the line stops before reaching the marquee row
 const FIO_STOP_OFFSET = 55
@@ -18,6 +19,7 @@ function buildFioPath(h: number) {
 }
 
 export default function FioLine() {
+  const isMobile = useIsMobile()
   const pathRef = useRef<SVGPathElement>(null)
   const [docHeight, setDocHeight] = useState(4000)
   const reducedMotion =
@@ -123,7 +125,9 @@ export default function FioLine() {
         fill="none"
         stroke="url(#fioGrad)"
         strokeWidth={2.5}
-        filter="url(#fioGlow)"
+        // ponytail: feGaussianBlur over a document-height filter region repaints on every scroll-driven
+        // dashoffset write, which is the main source of scroll jank on mobile GPUs — desktop keeps the glow
+        filter={isMobile ? undefined : 'url(#fioGlow)'}
         style={{ opacity: 0.85 }}
       />
     </svg>
