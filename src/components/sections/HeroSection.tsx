@@ -42,12 +42,12 @@ export default function HeroSection() {
         ))}
       </h1>
 
-      <div className="mt-11 flex items-center gap-7">
+      <div className="mt-11 flex flex-col items-center gap-4 sm:flex-row sm:gap-7">
         <a
           href={FORM_HREF}
           target="_blank"
           rel="noopener noreferrer"
-          className="rounded-2xl bg-brand-primary px-8 py-4 text-base font-semibold text-white transition-colors hover:bg-[#9A63EE]"
+          className="w-full max-w-xs rounded-2xl bg-brand-primary px-8 py-4 text-center text-base font-semibold text-white transition-colors hover:bg-[#9A63EE] sm:w-auto"
         >
           Agendar reunião gratuita
         </a>

@@ -6,6 +6,12 @@ import dragons from '../../assets/portfolio/dragons.webp'
 import goldenbear from '../../assets/portfolio/goldenbear.webp'
 import marciaSiqueira from '../../assets/portfolio/marcia-siqueira.webp'
 import psicologoLuis from '../../assets/portfolio/psicologo-luis.webp'
+import video1Poster from '../../assets/portfolio/video-1-poster.jpg'
+import video2Poster from '../../assets/portfolio/video-2-poster.jpg'
+import video3Poster from '../../assets/portfolio/video-3-poster.jpg'
+
+// clicking a portfolio image sends visitors to the Instagram where the full case lives
+const INSTAGRAM_HREF = 'https://www.instagram.com/linka_comunicacoes?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=='
 
 const NODES = [
   { client: 'Algar · Editorial de marca', image: algar },
@@ -17,9 +23,9 @@ const NODES = [
 ]
 
 const CAROUSELS = [
-  { n: '01', title: 'Imobiliária', subtitle: 'Lançamento Imobiliário', src: 'https://linkacomunicacoes.com/wp-content/uploads/2026/06/Video-1.mp4' },
-  { n: '02', title: 'Salão de Beleza', subtitle: 'Antes e Depois - Cabelo Feminino', src: 'https://linkacomunicacoes.com/wp-content/uploads/2026/06/Video-2.mp4' },
-  { n: '03', title: 'Esporte', subtitle: 'Divulgação da SemiFinal', src: 'https://linkacomunicacoes.com/wp-content/uploads/2026/06/Video-3.mp4' },
+  { n: '01', title: 'Imobiliária', subtitle: 'Lançamento Imobiliário', src: 'https://linkacomunicacoes.com/wp-content/uploads/2026/06/Video-1.mp4', poster: video1Poster },
+  { n: '02', title: 'Salão de Beleza', subtitle: 'Antes e Depois - Cabelo Feminino', src: 'https://linkacomunicacoes.com/wp-content/uploads/2026/06/Video-2.mp4', poster: video2Poster },
+  { n: '03', title: 'Esporte', subtitle: 'Divulgação da SemiFinal', src: 'https://linkacomunicacoes.com/wp-content/uploads/2026/06/Video-3.mp4', poster: video3Poster },
 ]
 
 function VideoCard({ carousel }: { carousel: (typeof CAROUSELS)[number] }) {
@@ -36,6 +42,7 @@ function VideoCard({ carousel }: { carousel: (typeof CAROUSELS)[number] }) {
         <div className="relative mx-auto aspect-[9/16] w-full overflow-hidden rounded-xl bg-black ring-1 ring-white/10">
           <video
             src={carousel.src}
+            poster={carousel.poster}
             controls
             playsInline
             preload="metadata"
@@ -72,8 +79,8 @@ export default function TrabalhoSection() {
       <div className="relative z-[2] w-full">
         <ZoomParallax
           images={[
-            { src: logoCentro, alt: 'Linka Comunicações', aspectClass: 'aspect-[16/9]' },
-            ...NODES.map((node) => ({ src: node.image, alt: node.client })),
+            { src: logoCentro, alt: 'Linka Comunicações', aspectClass: 'aspect-[16/9]', href: INSTAGRAM_HREF },
+            ...NODES.map((node) => ({ src: node.image, alt: node.client, href: INSTAGRAM_HREF })),
           ]}
         />
       </div>

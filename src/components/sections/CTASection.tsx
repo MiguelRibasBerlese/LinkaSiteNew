@@ -27,7 +27,7 @@ export default function CTASection() {
           setMagnet({ x: px * 24, y: py * 18 })
         }}
         onMouseLeave={() => setMagnet({ x: 0, y: 0 })}
-        className="inline-flex items-center gap-3.5 rounded-2xl bg-brand-primary px-11 py-6 font-display text-xl font-semibold text-white"
+        className="inline-flex w-full max-w-xs items-center justify-center gap-3.5 rounded-2xl bg-brand-primary px-6 py-4 text-center font-display text-base font-semibold text-white sm:w-auto sm:max-w-none sm:px-11 sm:py-6 sm:text-xl"
         style={{
           transform: `translate(${magnet.x}px, ${magnet.y}px)`,
           transition: 'transform 150ms ease-out',

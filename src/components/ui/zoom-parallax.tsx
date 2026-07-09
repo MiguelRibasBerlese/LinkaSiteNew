@@ -7,6 +7,8 @@ interface ZoomImage {
   alt?: string
   /** Tailwind aspect-ratio class, defaults to the Instagram-post 4:5 ratio */
   aspectClass?: string
+  /** wraps the image in a link, e.g. to the Instagram post it's from */
+  href?: string
 }
 
 interface ZoomParallaxProps {
@@ -19,14 +21,21 @@ interface ZoomParallaxProps {
 function ZoomParallaxMobile({ images }: ZoomParallaxProps) {
   return (
     <div className="grid grid-cols-2 gap-3 px-6">
-      {images.map(({ src, alt, aspectClass }, index) => (
-        <div
-          key={src}
-          className={`relative overflow-hidden rounded-2xl border border-brand-border ${aspectClass || 'aspect-[4/5]'} ${index === 0 ? 'col-span-2' : ''}`}
-        >
+      {images.map(({ src, alt, aspectClass, href }, index) => {
+        const img = (
           <img src={src} alt={alt || `Trabalho ${index + 1}`} loading="lazy" className="h-full w-full object-cover object-center" />
-        </div>
-      ))}
+        )
+        const className = `relative block overflow-hidden rounded-2xl border border-brand-border ${aspectClass || 'aspect-[4/5]'} ${index === 0 ? 'col-span-2' : ''}`
+        return href ? (
+          <a key={src} href={href} target="_blank" rel="noopener noreferrer" aria-label={alt} className={className}>
+            {img}
+          </a>
+        ) : (
+          <div key={src} className={className}>
+            {img}
+          </div>
+        )
+      })}
     </div>
   )
 }
@@ -52,8 +61,17 @@ export function ZoomParallax({ images }: ZoomParallaxProps) {
   return (
     <div ref={container} className="relative h-[300dvh]">
       <div className="sticky top-0 h-dvh overflow-hidden">
-        {images.map(({ src, alt, aspectClass }, index) => {
+        {images.map(({ src, alt, aspectClass, href }, index) => {
           const scale = scales[index % scales.length]
+          const frameClass = `relative ${aspectClass || 'aspect-[4/5]'} h-[16dvh] overflow-hidden rounded-2xl border border-brand-border sm:h-[25dvh]`
+          const img = (
+            <img
+              src={src}
+              alt={alt || `Trabalho ${index + 1}`}
+              loading="lazy"
+              className="h-full w-full object-cover object-center"
+            />
+          )
 
           return (
             <motion.div
@@ -63,14 +81,13 @@ export function ZoomParallax({ images }: ZoomParallaxProps) {
             >
               {/* aspectClass matches each image's native ratio (4:5 for the Instagram posts, 16:9 for the center logo), so width follows height instead of being cropped to an independent vw box */}
               {/* smaller base height on mobile: dvh-based sizing doesn't shrink with narrow width like vmin offsets do, so without this the cards overlap/touch even at scroll progress 0 */}
-              <div className={`relative ${aspectClass || 'aspect-[4/5]'} h-[16dvh] overflow-hidden rounded-2xl border border-brand-border sm:h-[25dvh]`}>
-                <img
-                  src={src}
-                  alt={alt || `Trabalho ${index + 1}`}
-                  loading="lazy"
-                  className="h-full w-full object-cover object-center"
-                />
-              </div>
+              {href ? (
+                <a href={href} target="_blank" rel="noopener noreferrer" aria-label={alt} className={frameClass}>
+                  {img}
+                </a>
+              ) : (
+                <div className={frameClass}>{img}</div>
+              )}
             </motion.div>
           )
         })}
