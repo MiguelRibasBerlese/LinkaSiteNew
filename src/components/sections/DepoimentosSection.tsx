@@ -3,7 +3,7 @@ import { GlowCard } from '../ui/spotlight-card'
 const TESTIMONIALS = [
   {
     quote:
-      'Eu estou adorando trabalhar com vocês e me sinto verdadeiramente próxima e acolhida, nunca pensei que teria essa fluidez! Já aconteceu de trabalhar com pessoas aqui de POA e poucas terem essa sinergia entre o time e devolutiva, parabéns estou impressionada! Desde a primeira abordagem está sendo mt legal, mesmo sem mensurar resultados do',
+      'Eu estou adorando trabalhar com vocês e me sinto verdadeiramente próxima e acolhida, nunca pensei que teria essa fluidez! Já aconteceu de trabalhar com pessoas aqui de POA e poucas terem essa sinergia entre o time e devolutiva, parabéns estou impressionada! Desde a primeira abordagem está sendo mt legal, mesmo sem mensurar resultados.',
     name: 'Hayane',
     role: 'Massoterapeuta',
   },
