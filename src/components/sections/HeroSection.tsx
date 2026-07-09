@@ -53,7 +53,7 @@ export default function HeroSection() {
         </a>
         <a
           href="#trabalho"
-          className="ml-[5px] border-b border-brand-primary pb-0.5 text-base font-medium text-white"
+          className="ml-[7px] border-b border-brand-primary pb-0.5 text-base font-medium text-white"
         >
           Ver vídeos
         </a>
