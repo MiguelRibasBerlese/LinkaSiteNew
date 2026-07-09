@@ -29,8 +29,8 @@ export function ZoomParallax({ images }: ZoomParallaxProps) {
   const scales = [scale4, scale5, scale6, scale5, scale6, scale8, scale9]
 
   return (
-    <div ref={container} className="relative h-[300vh]">
-      <div className="sticky top-0 h-screen overflow-hidden">
+    <div ref={container} className="relative h-[300dvh]">
+      <div className="sticky top-0 h-dvh overflow-hidden">
         {images.map(({ src, alt, aspectClass }, index) => {
           const scale = scales[index % scales.length]
 
@@ -38,10 +38,11 @@ export function ZoomParallax({ images }: ZoomParallaxProps) {
             <motion.div
               key={src}
               style={{ scale }}
-              className={`absolute top-0 flex h-full w-full items-center justify-center ${index === 1 ? '[&>div]:!-top-[24vh] [&>div]:!left-[16vh] [&>div]:!h-[18vh]' : ''} ${index === 2 ? '[&>div]:!-top-[2vh] [&>div]:!left-[32vh] [&>div]:!h-[20vh]' : ''} ${index === 3 ? '[&>div]:!top-[22vh] [&>div]:!left-[16vh] [&>div]:!h-[16vh]' : ''} ${index === 4 ? '[&>div]:!top-[22vh] [&>div]:!-left-[16vh] [&>div]:!h-[16vh]' : ''} ${index === 5 ? '[&>div]:!-top-[2vh] [&>div]:!-left-[32vh] [&>div]:!h-[20vh]' : ''} ${index === 6 ? '[&>div]:!-top-[24vh] [&>div]:!-left-[16vh] [&>div]:!h-[18vh]' : ''}`}
+              className={`absolute top-0 flex h-full w-full items-center justify-center ${index === 1 ? '[&>div]:!-top-[16dvh] [&>div]:!left-[30vmin] [&>div]:!h-[12dvh] sm:[&>div]:!-top-[24dvh] sm:[&>div]:!left-[16vmin] sm:[&>div]:!h-[18dvh]' : ''} ${index === 2 ? '[&>div]:!-top-[2dvh] [&>div]:!left-[38vmin] [&>div]:!h-[13dvh] sm:[&>div]:!-top-[2dvh] sm:[&>div]:!left-[32vmin] sm:[&>div]:!h-[20dvh]' : ''} ${index === 3 ? '[&>div]:!top-[15dvh] [&>div]:!left-[30vmin] [&>div]:!h-[11dvh] sm:[&>div]:!top-[22dvh] sm:[&>div]:!left-[16vmin] sm:[&>div]:!h-[16dvh]' : ''} ${index === 4 ? '[&>div]:!top-[15dvh] [&>div]:!-left-[30vmin] [&>div]:!h-[11dvh] sm:[&>div]:!top-[22dvh] sm:[&>div]:!-left-[16vmin] sm:[&>div]:!h-[16dvh]' : ''} ${index === 5 ? '[&>div]:!-top-[2dvh] [&>div]:!-left-[38vmin] [&>div]:!h-[13dvh] sm:[&>div]:!-top-[2dvh] sm:[&>div]:!-left-[32vmin] sm:[&>div]:!h-[20dvh]' : ''} ${index === 6 ? '[&>div]:!-top-[16dvh] [&>div]:!-left-[30vmin] [&>div]:!h-[12dvh] sm:[&>div]:!-top-[24dvh] sm:[&>div]:!-left-[16vmin] sm:[&>div]:!h-[18dvh]' : ''}`}
             >
               {/* aspectClass matches each image's native ratio (4:5 for the Instagram posts, 16:9 for the center logo), so width follows height instead of being cropped to an independent vw box */}
-              <div className={`relative ${aspectClass || 'aspect-[4/5]'} h-[25vh] overflow-hidden rounded-2xl border border-brand-border`}>
+              {/* smaller base height on mobile: dvh-based sizing doesn't shrink with narrow width like vmin offsets do, so without this the cards overlap/touch even at scroll progress 0 */}
+              <div className={`relative ${aspectClass || 'aspect-[4/5]'} h-[16dvh] overflow-hidden rounded-2xl border border-brand-border sm:h-[25dvh]`}>
                 <img
                   src={src}
                   alt={alt || `Trabalho ${index + 1}`}

@@ -13,7 +13,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative z-[2] mx-auto flex min-h-screen max-w-6xl flex-col justify-center px-6 pb-24 pt-40 md:px-12"
+      className="relative z-[2] mx-auto flex min-h-dvh max-w-6xl flex-col justify-center px-6 pb-24 pt-40 md:px-12"
     >
       <div
         className="mb-7 inline-flex items-center gap-3 transition-opacity duration-500"
